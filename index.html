@@ -56,6 +56,13 @@
   <input id="sifre" type="password" minlength="6" placeholder="En az 6 karakter" required style="width:100%;box-sizing:border-box;padding:12px;border-radius:8px;">
 
   <button type="submit" style="width:100%;margin-top:22px;padding:13px;background:#176b43;color:white;border:0;border-radius:8px;">Giriş Yap</button>
+
+<p style="text-align:center; margin-top:15px;">
+  <a href="#" onclick="kayitFormunuGoster(); return false;">
+    Yeni müşteri kaydı
+  </a>
+</p>
+  
 </form>
 
 
@@ -97,6 +104,10 @@ async function demoGiris(event) {
     mesaj.textContent = "Giriş başarılı!";
   } catch (error) {
     mesaj.textContent = "Giriş hatası: " + error.message;
+  }
+  function kayitFormunuGoster() {
+  const mesaj = document.getElementById("giris-mesaji");
+  mesaj.textContent = "Yeni müşteri kaydı formunu hazırlıyoruz.";
   }
 }
 </script>
