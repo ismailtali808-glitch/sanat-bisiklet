@@ -77,25 +77,26 @@ function rolSec(rol) {
   seciliRol = rol;
   document.getElementById("giris-baslik").textContent = rol + " Girişi";
   document.getElementById("giris-mesaji").textContent = "";
-}
 async function demoGiris(event) {
   event.preventDefault();
 
-  const telefon = document.getElementById("telefon").value.trim();
+  const eposta = document.getElementById("eposta").value.trim();
+  const sifre = document.getElementById("sifre").value;
   const mesaj = document.getElementById("giris-mesaji");
 
-  mesaj.textContent = "Giriş işlemi hazırlanıyor...";
+  mesaj.textContent = "Giriş yapılıyor...";
 
   try {
-    const { error } = await supabase.auth.signInWithOtp({
-      phone: telefon
+    const { error } = await supabase.auth.signInWithPassword({
+      email: eposta,
+      password: sifre
     });
 
     if (error) throw error;
 
-    mesaj.textContent = "SMS doğrulama kodu gönderildi.";
+    mesaj.textContent = "Giriş başarılı!";
   } catch (error) {
-    mesaj.textContent = "Hata: " + error.message;
+    mesaj.textContent = "Giriş hatası: " + error.message;
   }
 }
 </script>
