@@ -62,6 +62,13 @@
 </section>
 
 <script>
+  const SUPABASE_URL = "https://kfnvdyyofwjvwuurajqs.supabase.co";
+const SUPABASE_KEY = "sb_publishable_dUjTNl4FPkuWFxJoQ3eOwQ_e4msVf2T";
+
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 let seciliRol = "Müşteri";
 
 function rolSec(rol) {
