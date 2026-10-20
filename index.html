@@ -33,6 +33,47 @@
   </style>
 </head>
 <body>
+<section id="giris-paneli" style="background:#090909;color:white;min-height:80vh;padding:28px 18px;box-sizing:border-box;text-align:center;font-family:Arial,sans-serif;">
+  <div style="max-width:420px;margin:35px auto;background:#151515;border:1px solid #3b3b3b;border-radius:18px;padding:28px 20px;box-sizing:border-box;">
+    <h1 style="color:#e50914;margin:0 0 8px;">SANAT BİSİKLET</h1>
+    <p style="color:#bbb;margin-bottom:25px;">Toptan satış giriş paneli</p>
+
+    <div style="display:flex;gap:10px;margin-bottom:24px;">
+      <button type="button" onclick="rolSec('Yönetici')" style="flex:1;background:#e50914;color:white;border:0;border-radius:8px;padding:13px 5px;font-weight:bold;">Yönetici</button>
+      <button type="button" onclick="rolSec('Müşteri')" style="flex:1;background:#292929;color:white;border:1px solid #e50914;border-radius:8px;padding:13px 5px;font-weight:bold;">Müşteri</button>
+    </div>
+
+    <h2 id="giris-baslik" style="color:#fff;font-size:22px;">Müşteri Girişi</h2>
+
+    <form onsubmit="demoGiris(event)">
+      <label for="telefon" style="display:block;text-align:left;margin:16px 0 7px;">Telefon numarası</label>
+      <input id="telefon" type="tel" inputmode="tel" placeholder="05XXXXXXXXX" required style="width:100%;box-sizing:border-box;padding:14px;border-radius:8px;border:1px solid #444;background:#090909;color:white;font-size:16px;">
+
+      <label for="sifre" style="display:block;text-align:left;margin:16px 0 7px;">6 haneli şifre</label>
+      <input id="sifre" type="password" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="••••••" required style="width:100%;box-sizing:border-box;padding:14px;border-radius:8px;border:1px solid #444;background:#090909;color:white;font-size:16px;">
+
+      <button type="submit" style="width:100%;margin-top:22px;background:#e50914;color:white;border:0;border-radius:8px;padding:15px;font-size:17px;font-weight:bold;">Giriş Yap</button>
+    </form>
+
+    <p id="giris-mesaji" style="color:#ff7777;margin-top:18px;font-size:14px;"></p>
+  </div>
+</section>
+
+<script>
+let seciliRol = "Müşteri";
+
+function rolSec(rol) {
+  seciliRol = rol;
+  document.getElementById("giris-baslik").textContent = rol + " Girişi";
+  document.getElementById("giris-mesaji").textContent = "";
+}
+
+function demoGiris(event) {
+  event.preventDefault();
+  document.getElementById("giris-mesaji").textContent =
+    "Bu ekran henüz deneme modunda. Gerçek giriş sistemi kurulmalıdır.";
+}
+</script>
   <header>
     <h1>SANAT BİSİKLET</h1>
     <p>Toptan Bisiklet, Yedek Parça ve Aksesuar</p>
@@ -47,6 +88,7 @@
     <div class="kutu"><h2>Yedek Parçalar</h2><p>Ürünler yakında eklenecek.</p></div>
     <div class="kutu"><h2>Aksesuarlar</h2><p>Ürünler yakında eklenecek.</p></div>
     <div class="kutu"><h2>Lastik ve Jantlar</h2><p>Ürünler yakında eklenecek.</p></div>
+ 
   </main>
-</body>
+</body> 
 </html>
