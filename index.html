@@ -47,15 +47,17 @@
 
     <h2 id="giris-baslik" style="color:#fff;font-size:22px;">Müşteri Girişi</h2>
 
-    <form onsubmit="demoGiris(event)">
-      <label for="telefon" style="display:block;text-align:left;margin:16px 0 7px;">Telefon numarası</label>
-      <input id="telefon" type="tel" inputmode="tel" placeholder="05XXXXXXXXX" required style="width:100%;box-sizing:border-box;padding:14px;border-radius:8px;border:1px solid #444;background:#090909;color:white;font-size:16px;">
+    
+<form onsubmit="demoGiris(event)">
+  <label for="eposta" style="display:block;text-align:left;margin:16px 0 7px;">E-posta</label>
+  <input id="eposta" type="email" placeholder="ornek@eposta.com" required style="width:100%;box-sizing:border-box;padding:12px;border-radius:8px;">
 
-      <label for="sifre" style="display:block;text-align:left;margin:16px 0 7px;">6 haneli şifre</label>
-      <input id="sifre" type="password" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="••••••" required style="width:100%;box-sizing:border-box;padding:14px;border-radius:8px;border:1px solid #444;background:#090909;color:white;font-size:16px;">
+  <label for="sifre" style="display:block;text-align:left;margin:16px 0 7px;">Şifre</label>
+  <input id="sifre" type="password" minlength="6" placeholder="En az 6 karakter" required style="width:100%;box-sizing:border-box;padding:12px;border-radius:8px;">
 
-      <button type="submit" style="width:100%;margin-top:22px;background:#e50914;color:white;border:0;border-radius:8px;padding:15px;font-size:17px;font-weight:bold;">Giriş Yap</button>
-    </form>
+  <button type="submit" style="width:100%;margin-top:22px;padding:13px;background:#176b43;color:white;border:0;border-radius:8px;">Giriş Yap</button>
+</form>
+
 
     <p id="giris-mesaji" style="color:#ff7777;margin-top:18px;font-size:14px;"></p>
   </div>
@@ -76,11 +78,25 @@ function rolSec(rol) {
   document.getElementById("giris-baslik").textContent = rol + " Girişi";
   document.getElementById("giris-mesaji").textContent = "";
 }
-
-function demoGiris(event) {
+async function demoGiris(event) {
   event.preventDefault();
-  document.getElementById("giris-mesaji").textContent =
-    "Bu ekran henüz deneme modunda. Gerçek giriş sistemi kurulmalıdır.";
+
+  const telefon = document.getElementById("telefon").value.trim();
+  const mesaj = document.getElementById("giris-mesaji");
+
+  mesaj.textContent = "Giriş işlemi hazırlanıyor...";
+
+  try {
+    const { error } = await supabase.auth.signInWithOtp({
+      phone: telefon
+    });
+
+    if (error) throw error;
+
+    mesaj.textContent = "SMS doğrulama kodu gönderildi.";
+  } catch (error) {
+    mesaj.textContent = "Hata: " + error.message;
+  }
 }
 </script>
   <header>
