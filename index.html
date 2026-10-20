@@ -78,12 +78,15 @@ const supabase = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
+
 let seciliRol = "Müşteri";
 
 function rolSec(rol) {
   seciliRol = rol;
   document.getElementById("giris-baslik").textContent = rol + " Girişi";
   document.getElementById("giris-mesaji").textContent = "";
+}
+
 async function demoGiris(event) {
   event.preventDefault();
 
@@ -104,6 +107,30 @@ async function demoGiris(event) {
     mesaj.textContent = "Giriş başarılı!";
   } catch (error) {
     mesaj.textContent = "Giriş hatası: " + error.message;
+  }
+}
+
+async function kayitFormunuGoster() {
+  const eposta = prompt("E-posta adresinizi girin:");
+  if (!eposta) return;
+
+  const sifre = prompt("En az 6 karakterli bir şifre belirleyin:");
+  if (!sifre) return;
+
+  const mesaj = document.getElementById("giris-mesaji");
+  mesaj.textContent = "Hesap oluşturuluyor...";
+
+  try {
+    const { error } = await supabase.auth.signUp({
+      email: eposta.trim(),
+      password: sifre
+    });
+
+    if (error) throw error;
+
+    mesaj.textContent = "Kayıt isteği gönderildi. E-posta kutunuzu kontrol edin.";
+  } catch (error) {
+    mesaj.textContent = "Kayıt hatası: " + error.message;
   }
 }
 </script>
