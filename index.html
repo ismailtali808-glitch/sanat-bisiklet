@@ -68,6 +68,26 @@ onclick="kayitFormunuGoster()"
 </form>
 
 
+<div id="kayit-paneli" style="display:none;position:fixed;inset:0;z-index:9999;background:#090909;padding:24px 16px;overflow:auto;">
+  <div style="max-width:420px;margin:35px auto;background:#151515;border:1px solid #e50914;border-radius:18px;padding:24px;color:white;">
+    <button type="button" onclick="document.getElementById('kayit-paneli').style.display='none'" style="float:right;background:transparent;color:white;border:0;font-size:24px;">×</button>
+    <h2 style="color:#e50914;text-align:center;">SANAT BİSİKLET</h2>
+    <h3 style="text-align:center;">YENİ MÜŞTERİ KAYDI</h3>
+    <form id="kayit-paneli-formu">
+      <label>Ad Soyad</label>
+      <input id="kayit-adsoyad" required placeholder="Adınız ve soyadınız" style="width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px;">
+      <label>Telefon Numarası</label>
+      <input id="kayit-telefon" type="tel" required placeholder="05XX XXX XX XX" style="width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px;">
+      <label>E-posta</label>
+      <input id="kayit-eposta" type="email" required placeholder="E-posta adresiniz" style="width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px;">
+      <label>Şifre</label>
+      <input id="kayit-sifre" type="password" minlength="6" required placeholder="En az 6 karakter" style="width:100%;box-sizing:border-box;padding:12px;margin:8px 0 20px;">
+      <button type="submit" style="width:100%;padding:14px;background:#e50914;color:white;border:0;border-radius:8px;font-weight:bold;">HESAP OLUŞTUR</button>
+      <p id="kayit-paneli-mesaj" style="overflow-wrap:anywhere;"></p>
+    </form>
+  </div>
+</div>
+    
     <p id="giris-mesaji" style="color:#ff7777;margin-top:18px;font-size:14px;"></p>
   </div>
 </section>
@@ -113,7 +133,8 @@ async function demoGiris(event) {
 }
 
 async function kayitFormunuGoster() {
-  alert("Kayıt fonksiyonu açıldı");
+  document.getElementById("kayit-paneli").style.display = "block";
+return;
   const eposta = prompt("E-posta adresinizi girin:");
   if (!eposta) return;
 
