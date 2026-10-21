@@ -131,30 +131,8 @@ async function demoGiris(event) {
     mesaj.textContent = "Giriş hatası: " + error.message;
   }
 }
-
-async function kayitFormunuGoster() {
+function kayitFormunuGoster() {
   document.getElementById("kayit-paneli").style.display = "block";
-  const eposta = prompt("E-posta adresinizi girin:");
-  if (!eposta) return;
-
-  const sifre = prompt("En az 6 karakterli bir şifre belirleyin:");
-  if (!sifre) return;
-
-  const mesaj = document.getElementById("giris-mesaji");
-  mesaj.textContent = "Hesap oluşturuluyor...";
-
-  try {
-    const { error } = await supabase.auth.signUp({
-      email: eposta.trim(),
-      password: sifre
-    });
-
-    if (error) throw error;
-
-    mesaj.textContent = "Kayıt isteği gönderildi. E-posta kutunuzu kontrol edin.";
-  } catch (error) {
-    mesaj.textContent = "Kayıt hatası: " + error.message;
-  }
 }
   document.getElementById("kayit-paneli-formu").addEventListener("submit", async function(event) {
   event.preventDefault();
