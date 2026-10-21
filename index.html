@@ -134,7 +134,8 @@ async function demoGiris(event) {
 function kayitFormunuGoster() {
   document.getElementById("kayit-paneli").style.display = "block";
 }
-  document.getElementById("kayit-paneli-formu").addEventListener("submit", async function(event) {
+window.kayitFormuHazir = true;
+document.getElementById("kayit-paneli-formu").addEventListener("submit", async function(event) {
   event.preventDefault();
 
   const adSoyad = document.getElementById("kayit-adsoyad").value.trim();
