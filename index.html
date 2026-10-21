@@ -73,7 +73,7 @@ onclick="document.getElementById('kayit-paneli').style.display='block'; return f
     <button type="button" onclick="document.getElementById('kayit-paneli').style.display='none'" style="float:right;background:transparent;color:white;border:0;font-size:24px;">×</button>
     <h2 style="color:#e50914;text-align:center;">SANAT BİSİKLET</h2>
     <h3 style="text-align:center;">YENİ MÜŞTERİ KAYDI</h3>
-    <form id="kayit-paneli-formu">
+   <form id="kayit-paneli-formu" onsubmit="kayitOl(event); return false;">
       <label>Ad Soyad</label>
       <input id="kayit-adsoyad" required placeholder="Adınız ve soyadınız" style="width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px;">
       <label>Telefon Numarası</label>
