@@ -132,11 +132,10 @@ async function demoGiris(event) {
   }
 }
 function kayitFormunuGoster() {
-  document.getElementById("kayit-paneli").style.display = "block";
+  document.getElementById("kayit-paneli").style.display = "block"
 }
 document.getElementById("kayit-paneli-formu").addEventListener("submit", async function(event) {
   event.preventDefault();
-
   const adSoyad = document.getElementById("kayit-adsoyad").value.trim();
   const telefon = document.getElementById("kayit-telefon").value.trim();
   const eposta = document.getElementById("kayit-eposta").value.trim();
