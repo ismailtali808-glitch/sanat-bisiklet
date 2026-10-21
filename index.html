@@ -134,7 +134,6 @@ async function demoGiris(event) {
 
 async function kayitFormunuGoster() {
   document.getElementById("kayit-paneli").style.display = "block";
-return;
   const eposta = prompt("E-posta adresinizi girin:");
   if (!eposta) return;
 
@@ -157,6 +156,36 @@ return;
     mesaj.textContent = "Kayıt hatası: " + error.message;
   }
 }
+  document.getElementById("kayit-paneli-formu").addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  const adSoyad = document.getElementById("kayit-adsoyad").value.trim();
+  const telefon = document.getElementById("kayit-telefon").value.trim();
+  const eposta = document.getElementById("kayit-eposta").value.trim();
+  const sifre = document.getElementById("kayit-sifre").value;
+  const mesaj = document.getElementById("kayit-paneli-mesaj");
+
+  mesaj.textContent = "Hesap oluşturuluyor...";
+
+  try {
+    const { error } = await supabase.auth.signUp({
+      email: eposta,
+      password: sifre,
+      options: {
+        data: {
+          full_name: adSoyad,
+          phone: telefon
+        }
+      }
+    });
+
+    if (error) throw error;
+
+    mesaj.textContent = "Kayıt isteği gönderildi. E-postanızı kontrol edin.";
+  } catch (error) {
+    mesaj.textContent = "Kayıt hatası: " + error.message;
+  }
+});
 </script>
   <header>
     <h1>SANAT BİSİKLET</h1>
